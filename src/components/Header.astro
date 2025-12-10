@@ -1,0 +1,68 @@
+---
+// src/components/Header.astro
+---
+<header class="sticky top-0 z-50 py-4 px-8 bg-white/80 dark:bg-charcoal/80 backdrop-blur-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo or Name -->
+        <a href="/" class="text-xl font-bold text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+            My Portfolio
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#projects" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Projects</a>
+            <a href="#skills" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Skills</a>
+            <a href="#contact" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Contact</a>
+        </div>
+
+        <!-- Toggles -->
+        <div class="flex items-center space-x-4">
+            <!-- Language Toggle Placeholder -->
+            <div id="language-toggle" class="relative text-sm">
+                <button class="flex items-center text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+                    <span>EN</span>
+                    <span class="mx-1">/</span>
+                    <span>TH</span>
+                </button>
+            </div>
+
+            <!-- Theme Toggle Placeholder -->
+            <button id="theme-toggle" class="w-6 h-6 text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+                <!-- Sun icon for light mode -->
+                <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <!-- Moon icon for dark mode -->
+                <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // src/components/Header.astro Client-side script
+    const themeToggle = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+    // Function to set the icon based on the current theme
+    function setIcon(theme) {
+        if (theme === 'dark') {
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        }
+    }
+
+    // Set initial icon state
+    let currentTheme = localStorage.getItem('theme');
+    setIcon(currentTheme);
+
+    // Add click listener to the theme toggle button
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        currentTheme = isDark ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+        setIcon(currentTheme);
+    });
+</script>
