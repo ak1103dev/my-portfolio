@@ -60,7 +60,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      id-token: write # Add this line
+      contents: read     # Required to checkout the code (good practice)
+      pages: write       # REQUIRED: Allows the action to deploy to GitHub Pages
+      id-token: write    # REQUIRED: Allows the action to use OIDC for authentication
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
