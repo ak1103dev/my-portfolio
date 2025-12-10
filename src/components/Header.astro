@@ -1,29 +1,31 @@
 ---
 // src/components/Header.astro
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <header class="sticky top-0 z-50 py-4 px-8 bg-white/80 dark:bg-charcoal/80 backdrop-blur-sm">
     <nav class="max-w-7xl mx-auto flex justify-between items-center">
         <!-- Logo or Name -->
-        <a href="/" class="text-xl font-bold text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+        <a href={`/${lang}/`} class="text-xl font-bold text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
             My Portfolio
         </a>
 
         <!-- Navigation Links -->
         <div class="hidden md:flex items-center space-x-8">
-            <a href="#projects" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Projects</a>
-            <a href="#skills" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Skills</a>
-            <a href="#contact" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">Contact</a>
+            <a href="#projects" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">{t('nav.projects')}</a>
+            <a href="#skills" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">{t('nav.skills')}</a>
+            <a href="#contact" class="text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">{t('nav.contact')}</a>
         </div>
 
         <!-- Toggles -->
         <div class="flex items-center space-x-4">
-            <!-- Language Toggle Placeholder -->
-            <div id="language-toggle" class="relative text-sm">
-                <button class="flex items-center text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
-                    <span>EN</span>
-                    <span class="mx-1">/</span>
-                    <span>TH</span>
-                </button>
+            <!-- Language Toggle -->
+            <div class="relative text-sm flex items-center space-x-1">
+                <a href="/en/" class:list={[{'font-bold text-accent dark:text-accent-dark': lang === 'en'}, "text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors"]}>EN</a>
+                <span class="text-primary-text-light dark:text-primary-text-dark">/</span>
+                <a href="/th/" class:list={[{'font-bold text-accent dark:text-accent-dark': lang === 'th'}, "text-primary-text-light dark:text-primary-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors"]}>TH</a>
             </div>
 
             <!-- Theme Toggle Placeholder -->

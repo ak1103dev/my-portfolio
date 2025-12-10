@@ -1,16 +1,25 @@
 ---
 // src/components/Skills.astro
+import { useTranslations, Language } from '../i18n/utils';
+
+export interface Props {
+    lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
 const skills = {
-    "Languages": ["JavaScript", "TypeScript", "HTML5", "CSS3", "Unix"],
-    "Frameworks & Libraries": ["Astro", "React", "Next.js", "Node.js", "Tailwind CSS", "Nest.js", "Ant.design"],
-    "Tools & Platforms": ["Git", "GitHub", "Docker", "Kubernetes", "Vim"],
-    "Databases": ["MySQL", "PostgreSQL", "MongoDB"]
+    [t('skills.languages')]: ["JavaScript", "TypeScript", "HTML5", "CSS3", "Unix"],
+    [t('skills.frameworks')]: ["Astro", "React", "Next.js", "Node.js", "Tailwind CSS", "Nest.js", "Ant.design"],
+    [t('skills.tools')]: ["Git", "GitHub", "Docker", "Kubernetes", "Vim"],
+    [t('skills.databases')]: ["MySQL", "PostgreSQL", "MongoDB"]
 };
 ---
 <section id="skills" class="py-20 px-4">
     <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold mb-12 text-primary-text-light dark:text-primary-text-dark">
-            Technical Skills
+            {t('skills.title')}
         </h2>
 
         {Object.entries(skills).map(([category, items]) => (
