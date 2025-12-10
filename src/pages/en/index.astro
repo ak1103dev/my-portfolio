@@ -1,14 +1,16 @@
 ---
 // src/pages/en/index.astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Landing from '../../components/Landing.astro';
-import Skills from '../../components/Skills.astro';
-import Projects from '../../components/Projects.astro';
-import Contact from '../../components/Contact.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Landing from "../../components/Landing.astro";
+import Skills from "../../components/Skills.astro";
+import Projects from "../../components/Projects.astro";
+import Contact from "../../components/Contact.astro";
+import type { Language } from "../../i18n/utils";
 
-const lang = Astro.currentLocale;
+const lang = (Astro.currentLocale || "en") as Language;
 ---
+
 <BaseLayout title="My Portfolio">
     <Header lang={lang} />
     <main>
